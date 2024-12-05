@@ -1,8 +1,9 @@
 import json
-import subprocess
+'''import subprocess
 import re
 # Define a function to load JSON from a file and convert it to a dictionary
 def json_to_dict(file_path):
+    print(file_path)
     try:
         with open(file_path, 'r') as json_file:
             data = json.load(json_file)  # Load the JSON data
@@ -28,11 +29,11 @@ def replace_text_in_code(code, replacements):
 
 
 # Define text replacements
-'''replacements = {
+replacements = {
     "print": "console.log",
     "error": "console.error",
     "def": "function"
-}'''
+}
 def build():
     with open('scripts.js', 'w') as js_file:
         js_file.write(js_code)
@@ -42,6 +43,7 @@ def convert(code):
     # Example usage
       # Replace with your JSON file's path
     dictionary = json_to_dict(file_path)
+    print(dictionary)
 
     if dictionary:
         print("JSON successfully converted to dictionary:")
@@ -65,16 +67,16 @@ def convert(code):
 
 
 
-def create_js_file(file_name, js_code):
+def create_js_file(file_name_js, js_code):
     """
     Creates a JavaScript file with the provided code.
     
     :param file_name: Name of the JavaScript file to create
     :param js_code: JavaScript code to write into the file
     """
-    with open(file_name, 'w') as js_file:
+    with open(file_name_js, 'w') as js_file:
         js_file.write(js_code)
-    print(f"JavaScript file '{file_name}' created successfully.")
+    print(f"JavaScript file '{file_name_js}' created successfully.")
 
 def run_js_file(file_name):
     """
@@ -94,7 +96,7 @@ def run_js_file(file_name):
 # Example usage
 
 if __name__ == '__main__':
-    file_path = 'code.json'
+    file_path = '/code.json'
     custom_code = """
     def hi(name){
         print('hi');
@@ -109,4 +111,8 @@ if __name__ == '__main__':
     # Create and run the JavaScript file
     create_js_file(js_file_name, js_code)
     run_js_file(js_file_name)
-    build()
+    #build()
+'''
+file_path='code.json'
+with open(file_path, 'r') as json_file:
+    data = json.load(json_file)

@@ -2,6 +2,7 @@ import json
 
 # Define a function to load JSON from a file and convert it to a dictionary
 def json_to_dict(file_path):
+    print(file_path)
     try:
         with open(file_path, 'r') as json_file:
             data = json.load(json_file)  # Load the JSON data
@@ -99,7 +100,7 @@ def run_js_file(file_name):
         print(e.stderr)
 
 # Example usage
-js_file_name = "example.js"
+#js_file_name = "example.js"
 js_code = replaced_code
 # Create and run the JavaScript file
 create_js_file(js_file_name, js_code)
