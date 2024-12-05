@@ -1,0 +1,15 @@
+{
+  "code":{
+  "print":{"og": "console.log","params": "true"},
+  "error":{"og": "console.error","params": "true"},
+  "def ":{"og": "function ","params": "true","func-name":"name"},
+  "elif":{"og":"else if","params":"true"},
+  "hello":{"og":"hello/scripts.js","params":"true"}
+  
+},
+"build":{
+  "type":"local",
+  "custom":"scripts.js"
+}
+
+}
