@@ -5,7 +5,10 @@
   "error":{"og": "console.error","params": "true"},
   "def ":{"og": "function ","params": "true","func-name":"name"},
   "elif":{"og":"else if","params":"true"},
-  "hello":{"og":"hello/scripts.js","params":"true"}
+  "hello":{"og":"hello/scripts.js","params":"true"},
+  "not":{"og":"!", "params":"false"},
+  "and":{"og":"&&", "params":"false"},
+  "or":{"og":"||","params":"false"}
   
 },
 "build":{

@@ -108,8 +108,15 @@ if __name__ == '__main__':
         error('errir');
         print('done');
         //hello(name)
+        if(name=='Ethan' and name not== 'jo'){
+        print('hi Ethan')
+        }elif(name not== 'Ethan' and name not== 'jo'){
+        print('imposter')}else{
+        print('hi jo')}
     }
     hi('Ethan')
+    hi('jo')
+    hi('michal')
     """
     js_file_name = "run.js"
     js_code = convert(custom_code)
