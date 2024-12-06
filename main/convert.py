@@ -1,17 +1,27 @@
 import json
-'''import subprocess
+import subprocess
 import re
+import os
 # Define a function to load JSON from a file and convert it to a dictionary
-def json_to_dict(file_path):
-    print(file_path)
+
+def json_to_dict(file_name):
+    # Get the directory of the current script
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(current_dir, file_name)
+
     try:
-        with open(file_path, 'r') as json_file:
-            data = json.load(json_file)  # Load the JSON data
-        return data  # Return as a dictionary
+        with open(file_path, 'r') as file:
+            data = json.load(file)
+        print(f"Successfully loaded data from {file_name}:")
+        print(data)
+        return data
     except FileNotFoundError:
-        print(f"Error: The file '{file_path}' does not exist.")
+        print(f"Error: The file '{file_name}' was not found in {current_dir}.")
     except json.JSONDecodeError:
-        print(f"Error: The file '{file_path}' contains invalid JSON.")
+        print(f"Error: The file '{file_name}' contains invalid JSON.")
+
+# Example Usage
+#load_json_file("code.json")
 
 # Function to split code by semicolons
 def split_code_by_semicolon(code):
@@ -29,11 +39,6 @@ def replace_text_in_code(code, replacements):
 
 
 # Define text replacements
-replacements = {
-    "print": "console.log",
-    "error": "console.error",
-    "def": "function"
-}
 def build():
     with open('scripts.js', 'w') as js_file:
         js_file.write(js_code)
@@ -96,13 +101,13 @@ def run_js_file(file_name):
 # Example usage
 
 if __name__ == '__main__':
-    file_path = '/code.json'
+    file_path = 'code.json'
     custom_code = """
     def hi(name){
         print('hi');
         error('errir');
         print('done');
-        hello(name)
+        //hello(name)
     }
     hi('Ethan')
     """
@@ -112,7 +117,3 @@ if __name__ == '__main__':
     create_js_file(js_file_name, js_code)
     run_js_file(js_file_name)
     #build()
-'''
-file_path='code.json'
-with open(file_path, 'r') as json_file:
-    data = json.load(json_file)

@@ -1,4 +1,5 @@
 {
+  "start":"",
   "code":{
   "print":{"og": "console.log","params": "true"},
   "error":{"og": "console.error","params": "true"},
@@ -9,5 +10,10 @@
 },
 "build":{
   "type":"local",
-  "custom":"scripts.js"
-}}
+  "version":"0.2.1",
+  "filext":"nnc",
+  "file_icon":"image.ico",
+  "name":"--c"
+},
+"end":""
+}
