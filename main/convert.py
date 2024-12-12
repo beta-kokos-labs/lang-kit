@@ -124,3 +124,56 @@ if __name__ == '__main__':
     create_js_file(js_file_name, js_code)
     run_js_file(js_file_name)
     #build()
+###########################################################
+
+import tokenize
+import token
+from io import StringIO
+
+# Define the conversion dictionary (custom language -> JavaScript)
+conversion_dict = {
+    "def": "function",
+    "print": "console.log",
+    "True": "true",
+    "False": "false",
+    "None": "null"
+    # Add more mappings as needed
+}
+
+def custom_language_converter(code, conversion_dict):
+    converted_code = []  # To store the output as a list
+
+    def transform(token_type, token_string):
+        # Replace tokens based on the conversion dictionary
+        if token_type == token.NAME and token_string in conversion_dict:
+            return conversion_dict[token_string]
+        return token_string  # Leave other tokens unchanged
+
+    code_stream = StringIO(code)
+    tokens = tokenize.generate_tokens(code_stream.readline)
+
+    for tok in tokens:
+        tok_type, tok_string, start, end, line = tok
+
+        # Preserve comments and strings
+        if tok_type in (token.COMMENT, token.STRING):
+            converted_code.append(tok_string)
+        else:
+            # Transform tokens using the dictionary
+            transformed = transform(tok_type, tok_string)
+            converted_code.append(transformed)
+
+    return converted_code
+
+# Example usage
+python_code = """
+# This is a comment
+def hello_world():
+    is_true = True
+    print("Hello, world!")
+    return None
+"""
+
+result = custom_language_converter(python_code, conversion_dict)
+print("Converted Code as List:")
+print(result)
