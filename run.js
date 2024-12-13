@@ -1,16 +1,6 @@
-
-    function hi(name){
-        console.log('hi');
-        console.err||('errir');
-        console.log('done');
-        //hello/scripts.js(name)
-        if(name=='Ethan' && name !== 'jo'){
-        console.log('hi Ethan')
-        }else if(name !== 'Ethan' && name !== 'jo'){
-        console.log('imposter')}else{
-        console.log('hi jo')}
+function hello_world(){
+    is_true = true
+    console.log("Hello, world!")
+    return null
     }
-    hi('Ethan')
-    hi('jo')
-    hi('michal')
-    
+    hello_world()

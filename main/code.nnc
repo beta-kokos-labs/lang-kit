@@ -1,0 +1,22 @@
+func hi(name){
+    printout('hi');
+    error('errir');
+    printout('done');
+    //hello(name)
+    ??(name=='Ethan' -- name !== 'jo') //'--' is and, '|' is or and not is '!'
+    {
+    printout('hi Ethan')
+    }
+    ?~(name !== 'Ethan' -- name !== 'jo')
+    {
+    printout('imposter')
+    }
+    ~>{
+    printout('hi jo')
+    }
+}
+hi('Ethan')
+hi('jo')
+hi('michal')
+
+printout('complete')
