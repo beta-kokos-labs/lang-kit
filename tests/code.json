@@ -1,13 +1,23 @@
 {
+  "start":"",
   "code":{
-  "print":{"og": "console.log","params": "true"},
-  "error":{"og": "console.error","params": "true"},
-  "def ":{"og": "function ","params": "true","func-name":"name"},
-  "elif":{"og":"else if","params":"true"},
-  "hello":{"og":"hello/scripts.js","params":"true"}
+  "printout":"console.log",
+  "error":"console.error",
+  "func":"function ",
+  "elif":"else if",
+  "hellounevoiunvs":"hello/scripts.js",
+  "and":"&&",
+  "or":"||",
+  "!==":"!=="
   
 },
 "build":{
   "type":"local",
-  "custom":"scripts.js"
-}}
+  "version":"0.2.1",
+  "filext":"nnc",
+  "file_icon":"image.ico",
+  "name":"--c",
+  "pre":["document"]
+},
+"end":""
+}

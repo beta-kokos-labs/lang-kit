@@ -37,14 +37,27 @@ def get_code(file_name):
 
 # Define the conversion dictionary (custom language -> JavaScript), json_to_dict('code.json')
 print(json_to_dict('code.json')['code'])
-conversion_dict = json_to_dict('code.json')['code']
-'''{
-    "def": "function",
-    "print": "console.log",
-    "True": "true",
-    "False": "false",
-    "None": "null",
-    "#": "//"
+conversion_dict = '''{
+  "start":"",
+  "code":{
+  "printout":"console.log",
+  "error":"console.error",
+  "func":"function ",
+  "elif":"else if",
+  "hellounevoiunvs":"hello/scripts.js",
+  "and":"&&",
+  "or":"||"
+  
+},
+"build":{
+  "type":"local",
+  "version":"0.2.1",
+  "filext":"nnc",
+  "file_icon":"image.ico",
+  "name":"--c",
+  "pre":["document"]
+},
+"end":""
 }
 '''
 def custom_language_converter(code, conversion_dict):
@@ -84,10 +97,11 @@ def custom_language_converter(code, conversion_dict):
         else:
             # Transform tokens using the dictionary
             transformed = transform(tok_type, tok_string)
-            if transformed not in {",", "(", ")", ";", "{"}:  # Add space before most tokens
-                current_line.append(f" {transformed}")
-            else:
+            # Avoid adding spaces around operators and punctuation
+            if tok_string in {",", "(", ")", ";", "{", "}", "==", "!=", "!==", "==="}:
                 current_line.append(transformed)
+            else:
+                current_line.append(f" {transformed}")
 
     # Add the last line and close open blocks
     if current_line:
@@ -104,10 +118,10 @@ def custom_language_converter(code, conversion_dict):
 
     return "\n".join(converted_code)
 
+
 # Example usage get_code('code.nnc')
 
-python_code =get_code('code.nnc')
-'''
+python_code ='''
 func hi(name){
     printout('hi');
     error('errir');
@@ -146,4 +160,4 @@ hello_world()
 
 result = custom_language_converter(python_code, conversion_dict)
 print("Converted Code as String:")
-print(result.replace('!= =','!==').replace('== =','==='))
+print(result)

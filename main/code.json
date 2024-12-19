@@ -1,15 +1,15 @@
 {
   "start":"",
   "code":{
-  "printout":{"og": "console.log","params": "true"},
-  "error":{"og": "console.error","params": "true"},
-  "func ":{"og": "function ","params": "true","func-name":"name"},
-  "?~":{"og":"else if","params":"true"},
-  "hello":{"og":"hello/scripts.js","params":"true"},
-  "??":{"og":"if"},
-  "~>":{"og":"else"},
-  "--":{"og":"&&", "params":"false"},
-  "|":{"og":"||","params":"false"}
+  "printout":"console.log",
+  "error":"console.error",
+  "func ":"function ",
+  "?~":"else if",
+  "hello":"hello/scripts.js",
+  "??":"if",
+  "~>":"else",
+  "--":"&&",
+  "|":"||"
   
 },
 "build":{
