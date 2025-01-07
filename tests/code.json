@@ -1,15 +1,16 @@
 {
-  "start":"",
+  "start":{"import_custom":"hello.js","pre-exectute":""},
   "code":{
   "printout":"console.log",
   "error":"console.error",
   "func":"function ",
   "elif":"else if",
-  "hellounevoiunvs":"hello/scripts.js",
   "and":"&&",
   "or":"||",
-  "!==":"!=="
-  
+  "!==":"!==",
+  "tell":"alert",
+  "what":"prompt",
+  "custom":{"hello":"hello"}
 },
 "build":{
   "type":"local",

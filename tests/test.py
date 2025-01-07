@@ -4,6 +4,16 @@ from io import StringIO
 import json
 import os
 # Define a function to load JSON from a file and convert it to a dictionary
+def import_file(file_json):
+    file_import=json_to_dict(file_json) #import the file json file
+    importable=file_import['start']['import_custom']
+    custom=file_import['start']['import_custom']
+    split_code_=split_code(get_code(importable)) #split the code for custom functions
+    return 
+
+def split_code(code):#split the code by functions
+    code = code.split('}')
+    return code
 
 def json_to_dict(file_name):
     # Get the directory of the current script
@@ -37,6 +47,7 @@ def get_code(file_name):
 
 # Define the conversion dictionary (custom language -> JavaScript), json_to_dict('code.json')
 print(json_to_dict('code.json')['code'])
+print(import_file('code.json'))
 conversion_dict = json_to_dict('code.json')['code']
 '''{
     "def": "function",
@@ -47,7 +58,7 @@ conversion_dict = json_to_dict('code.json')['code']
     "#": "//"
 }
 '''
-def custom_language_converter(code, conversion_dict):
+def custom_language_converter(code, conversion_dict):# convert the code to custom language
     converted_code = []  # To store the output as lines of code
     current_line = []
     indent_level = 0
@@ -146,4 +157,4 @@ hello_world()
 
 result = custom_language_converter(python_code, conversion_dict)
 print("Converted Code as String:")
-print(result.replace('!= =','!==').replace('== =','==='))
+print(result.replace('!= =','!==').replace('== =','===')) # print completed code, replace is required for incorrect indentation from tokinizer
