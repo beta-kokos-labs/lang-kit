@@ -1,16 +1,18 @@
 {
-  "start":"",
+  "start":{"import_custom":"hello.js","pre-exectute":"","post-executed":""},
   "code":{
   "printout":"console.log",
   "error":"console.error",
-  "func ":"function ",
-  "?~":"else if",
-  "hello":"hello/scripts.js",
-  "??":"if",
-  "~>":"else",
-  "--":"&&",
-  "|":"||"
-  
+  "func":"function ",
+  "elif":"else if",
+  "set":"let",
+  "make":"new",
+  "and":"&&",
+  "or":"||",
+  "!==":"!==",
+  "tell":"alert",
+  "what":"prompt",
+  "custom":{"hello":"hello"}
 },
 "build":{
   "type":"local",
@@ -19,6 +21,5 @@
   "file_icon":"image.ico",
   "name":"--c",
   "pre":["document"]
-},
-"end":""
+}
 }

@@ -3,33 +3,62 @@ import token
 from io import StringIO
 import json
 import os
-# Define a function to load JSON from a file and convert it to a dictionary
-def import_file(file_json):
-    file_import=json_to_dict(file_json) #import the file json file
-    importable=file_import['start']['import_custom']
-    custom=file_import['start']['import_custom']
-    split_code_=split_code(get_code(importable)) #split the code for custom functions
-    return 
+from functools import lru_cache
+from typing import List, Dict, Optional
 
-def split_code(code):#split the code by functions
-    code = code.split('}')
-    return code
-
-def json_to_dict(file_name):
-    # Get the directory of the current script
+@lru_cache(maxsize=32)
+def json_to_dict(file_name: str) -> Optional[Dict]:
+    """Load and cache JSON file content."""
     current_dir = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(current_dir, file_name)
 
     try:
         with open(file_path, 'r') as file:
-            data = json.load(file)
-        #print(f"Successfully loaded data from {file_name}:")
-        #print(data)
-        return data
+            return json.load(file)
     except FileNotFoundError:
-        print(f"Error: The file '{file_name}' was not found in {current_dir}.")
+        print(f"Error: File '{file_name}' not found in {current_dir}")
+        return None
     except json.JSONDecodeError:
-        print(f"Error: The file '{file_name}' contains invalid JSON.")
+        print(f"Error: Invalid JSON in '{file_name}'")
+        return None
+
+def split_code(code: str) -> List[str]:
+    """Split code by function blocks more accurately."""
+    if not code:
+        return []
+    
+    # More robust function splitting using brace counting
+    functions = []
+    current_function = []
+    brace_count = 0
+    
+    for char in code:
+        current_function.append(char)
+        if char == '{':
+            brace_count += 1
+        elif char == '}':
+            brace_count -= 1
+            if brace_count == 0:
+                functions.append(''.join(current_function))
+                current_function = []
+    
+    return [f.strip() for f in functions if f.strip()]
+
+def import_file(file_json: str) -> Optional[List[str]]:
+    """Import and process JSON configuration file."""
+    file_import = json_to_dict(file_json)
+    if not file_import:
+        return None
+    
+    try:
+        importable = file_import['start']['import_custom']
+        code = get_code(importable)
+        if code:
+            return split_code(code)
+        return None
+    except KeyError as e:
+        print(f"Error: Missing key in JSON structure: {e}")
+        return None
 
 def get_code(file_name):
     # Get the directory of the current script

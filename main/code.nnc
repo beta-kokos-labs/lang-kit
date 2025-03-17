@@ -8,7 +8,8 @@ func hi(name){
     printout('hi Ethan')
     }
     elif(name !== 'Ethan' and name !== 'jo')
-    {
+    {set i = 'yo mom and billy or just fill or else'
+    
     printout('imposter')
     }
     else{
@@ -22,3 +23,5 @@ hi('michal')
 printout('complete')
 
 tell(hi)
+
+hello('Ethan')
