@@ -2,8 +2,8 @@ import re
 import json
 
 def replace_with_json(code, json_string=None):
-    # Sample JSON string
-    json_string = '''
+    # Sample JSON string if none provided
+    json_string = json_string or '''
     {
         "x":"replaced_x",
         "y":"replaced_y"
@@ -12,30 +12,24 @@ def replace_with_json(code, json_string=None):
     
     # Parse the JSON string into a Python dictionary
     data = json.loads(json_string)
-
-   ''' 
-   for key, value in data.items():
-        code = replace_outside_quotes(code, value, key)
-    print(code)'''
     
-    # Replace keys with their corresponding values
+    # First pass: Replace keys with their corresponding values
     for key, value in data.items():
-        print(f"Key: {key}, Value: {value}")
+        print(f"Replacing key '{key}' with value '{value}'")
         code = replace_outside_quotes(code, key, value)
-    print(code)
-    # Replace values with their corresponding keys
-
-    # Convert the dictionary back to a JSON string
-    #modified_json_string = code
     
-    return code#modified_json_string
-
+    # Second pass: Replace values with their corresponding keys
+    for key, value in data.items():
+        print(f"Replacing value '{value}' with key '{key}'")
+        code = replace_outside_quotes(code, value, key)
+    
+    return code
 
 def replace_outside_quotes(code, to_replace, replacement):
     # Regular expression to match strings inside single or double quotes
     string_pattern = r'".*?"|\'.*?\''
     
-    # Regular expression to match the key as a standalone word
+    # Regular expression to match the exact word
     word_pattern = rf'\b{re.escape(to_replace)}\b'
     
     # Split the code into parts: those inside quotes and everything else
@@ -54,15 +48,16 @@ code = '''
 x = 10  # This is some code
 string1 = "This is a string with code x = 20"
 y = 15  # Replace x outside quotes
+replaced_y = 25  # This will be replaced with y
 string2 = 'This is another string with code y = 30'
 happy = True  # This is a boolean
-replace_x = 'test string'
+replaced_x = 'test string'
 '''
 
 print("Original Code:")
 print(code)
 
-# Replace 'x' with 'replaced_x' outside of strings
+# Test with both key->value and value->key replacements
 modified_code = replace_with_json(code, '''
     {
         "x":"replaced_x",
